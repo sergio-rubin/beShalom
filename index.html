@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Biblioteca de Estribillos Shalom (BES)">
+    <title>Biblioteca de Estribillos Shalom (BES)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+</head>
+<body>
+    <header>
+        <button id="toggleBtn" onclick="toggleHeader()">☰</button>
+
+        <nav id="nav">
+            <icon class="icon" id="icon">
+                <img src="/drkIMSlogo.png" alt="icon">
+            </icon>
+
+            <button class="navButton" id="homeBtn" onclick="showPage('Inicio')">Inicio</button>
+            <button class="navButton" id="registerBtn" onclick="showPage('CrearCuenta')">Crear Cuenta</button>
+            <button class="navButton" id="loginBtn" onclick="showPage('IniciarSesion')">Iniciar Sesión</button>
+            <button class="navButton" id="logoutBtn" style="display: none;" onclick="logout()">Cerrar Sesión</button>
+            <button class="navButton" id="addEstribilloBtn" style="display: none;" onclick="showPage('AñadirEstribillo')">Añadir Estribillo</button>
+            <button class="navButton" id="deleteEstribilloBtn"style="display: none;" onclick="showPage('EliminarEstribillo')">Eliminar Estribillo</button>
+            <button class="navButton" id="editEstribilloBtn"style="display: none;" onclick="showPage('EditarEstribillo')">Editar Estribillo</button>
+        </nav>
+
+        <p id="user" style="display: none;"></p>
+    </header>
+
+    <section class="page" id="Inicio">
+        <h1>Biblioteca de Estribillos Shalom (BES)</h1>
+        <p>¡Bienvenido a la Biblioteca de Estribillos Shalom (BES)! Aquí podrás encontrar la colección de estribillos Cristianos - Metodistas de la iglesia "Shalom".</p>
+
+        <h2>Estribillos</h2>
+
+        <!-- Buscador de estribillos por nombre y por número de estribillo -->
+        <form id="searchByNumForm">
+            <label for="searchByNum">Buscar por Número:</label>
+            <input type="number" id="searchByNum" oninput="searchEstribillo()">
+        </form>
+
+        <form id="searchByNameForm">
+            <label for="searchByName">Buscar por Nombre:</label>
+            <input type="text" id="searchByName" oninput="searchEstribillo()">
+        </form>
+
+        <h3>Estribillo</h3>
+        <div id="estribillo"></div>
+    </section>
+
+    <section class="page" id="CrearCuenta" style="display: none;">
+        <h1>Crear Cuenta</h1>
+        <form id="registerForm">
+            <label for="registerUsername">Nombre:</label>
+            <input type="text" id="registerUsername" required>
+
+            <label for="registerEmail">Correo Electrónico:</label>
+            <input type="email" id="registerEmail" required>
+
+            <label for="registerPassword">Contraseña:</label>
+            <input type="password" id="registerPassword" required>
+
+            <button type="submit">Crear Cuenta</button>
+        </form>
+    </section>
+
+    <section class="page" id="IniciarSesion" style="display: none;">
+        <h1>Iniciar Sesión</h1>
+        <form id="loginForm">
+            <label for="loginEmail">Correo Electrónico:</label>
+            <input type="email" id="loginEmail" required>
+
+            <label for="loginPassword">Contraseña:</label>
+            <input type="password" id="loginPassword" required>
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </section>
+
+    <section class="page" id="AñadirEstribillo" style="display: none;">
+        <h1>Añadir Estribillo</h1>
+        <form id="addEstribilloForm">
+            <label for="addEstribilloTitle">Título:</label>
+            <input type="text" id="addEstribilloTitle" required>
+            <label for="addEstribilloLyrics">Letra:</label>
+            <textarea id="addEstribilloLyrics" required></textarea>
+            <button type="submit">Añadir Estribillo</button>
+        </form>
+    </section>
+
+    <section class="page" id="EliminarEstribillo" style="display: none;">
+        <h1>Eliminar Estribillo</h1>
+        <form id="deleteEstribilloForm">
+            <label for="deleteEstribilloTitle">Número o Título:</label>
+            <input type="text" id="deleteEstribilloTitle" required>
+            <button type="submit">Eliminar Estribillo</button>
+        </form>
+    </section>
+
+    <section class="page" id="EditarEstribillo" style="display: none;">
+        <h1>Editar Estribillo</h1>
+        <form id="editEstribilloForm">
+            <label for="editEstribilloTitle">Título:</label>
+            <input type="text" id="editEstribilloTitle" required>
+            <label for="editEstribilloLyrics">Letra:</label>
+            <textarea id="editEstribilloLyrics" required></textarea>
+            <button type="submit">Editar Estribillo</button>
+        </form>
+    </section>
+
+    <div class="loader" id="loader" style="display: none;">
+        <img src="/drkIMSlogo.png" alt="Cargando...">
+        <div>Cargando...</div>
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

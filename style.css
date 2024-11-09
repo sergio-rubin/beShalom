@@ -1,0 +1,251 @@
+@font-face {
+    font-family: 'Agrandir';
+    src: url(/Agrandir-Regular.otf);
+}
+
+body {
+    font-family: 'Agrandir';
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    margin-left: 15px; /* Elimina el padding adicional */
+}
+
+textarea {
+    font-family: 'Agrandir';
+    
+}
+
+header {
+    background-color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    position: sticky; /* Para mantenerlo fijo en la parte superior */
+    top: 0;
+    z-index: 10;
+    margin: 15px;
+
+    /* Alinear botones al final */
+    align-self: flex-end;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+nav .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+nav button {
+    background-color: #333333;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    gap: 5px;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+nav button:hover {
+    background-color: #555555;
+}
+
+h1, h2 {
+    color: #e0e0e0;
+    margin: 20px 0 10px;
+}
+
+.content-container {
+    padding: 20px;
+    margin-top: 80px; /* Asegura que el contenido no esté oculto debajo del header */
+}
+
+input, textarea {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    font-family: 'Agrandir';
+    background-color: #333333;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555555;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.content {
+    display: none;
+    margin-top: 10px;
+}
+
+#toggleBtn {
+    display: none;  /* El botón será visible solo en dispositivos móviles */
+    padding: 10px;
+    font-size: 20px;
+    background-color: #333333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+
+    header {
+        padding: 5px;
+        margin: 5px auto;
+        width: 100%;  /* Asegura que el header abarque todo el ancho disponible */
+        display: flex;
+        flex-direction: column;  /* Alinea los elementos de arriba hacia abajo */
+        justify-content: flex-start;  /* Asegura que los elementos comiencen desde la parte superior */
+        align-items: center;  /* Centra los elementos horizontalmente */
+    }
+
+    /* Imagen en la parte superior */
+    header .icon {
+        margin-bottom: 10px;  /* Añade espacio debajo de la imagen */
+    }
+
+    #toggleBtn {
+        display: block;  /* Muestra el botón en pantallas pequeñas */
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+    }
+
+    #nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-height: 500px;  /* Valor alto para permitir que se expanda completamente */
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, transform 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #nav.collapsed {
+        max-height: 0;
+        opacity: 0;  /* Hace que el contenido se desvanezca */
+        transform: translateY(-20px);  /* Desliza hacia arriba */
+    }
+
+    #user {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    nav button {
+        padding: 8px 10px;
+        margin: 0;
+        /* Otros estilos para los botones si es necesario */
+    }
+
+    input, textarea {
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    button {
+        padding: 8px;
+    }
+
+    li {
+        margin: 8px 0;
+        padding: 8px;
+    }
+}
+
+
+
+
+/* Hacer un loader que muestre una imagen y debajo de ella cargando... */
+.loader {
+    padding-top: 20px;
+    display: none; /* Oculto por defecto */
+    text-align: center;
+}
+
+.loader img {
+    width: 100px;
+    height: 100px;
+    border-radius: 30px;
+    animation: pulse 2s infinite;
+}
+
+.loader div {
+    font-size: 20px;
+    margin: 10px;
+    font-family: 'Agrandir';
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Animación para el loader */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
