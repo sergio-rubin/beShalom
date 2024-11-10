@@ -26,6 +26,7 @@
             <button class="navButton" id="addEstribilloBtn" style="display: none;" onclick="showPage('AñadirEstribillo')">Añadir Estribillo</button>
             <button class="navButton" id="deleteEstribilloBtn"style="display: none;" onclick="showPage('EliminarEstribillo')">Eliminar Estribillo</button>
             <button class="navButton" id="editEstribilloBtn"style="display: none;" onclick="showPage('EditarEstribillo')">Editar Estribillo</button>
+            <button class="navButton" id="listaEstribillosBtn" style="display: none;" onclick="showPage('ListaEstribillos')">Lista de Estribillos</button>
         </nav>
 
         <p id="user" style="display: none;"></p>
@@ -110,6 +111,11 @@
             <textarea id="editEstribilloLyrics" required></textarea>
             <button type="submit">Editar Estribillo</button>
         </form>
+    </section>
+
+    <section class="page" id="ListaEstribillos" style="display: none;">
+        <h1>Lista de Estribillos</h1>
+        <div id="listaEstribillos"></div>
     </section>
 
     <div class="loader" id="loader" style="display: none;">

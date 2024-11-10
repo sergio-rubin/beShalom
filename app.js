@@ -72,6 +72,7 @@ auth.onAuthStateChanged(user => {
         document.getElementById("logoutBtn").style.display = "block";
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("registerBtn").style.display = "none";
+        document.getElementById("listaEstribillosBtn").style.display = "block";
     } else {
         addEstribilloButton.style.display = "none";
         editEstribilloButton.style.display = "none";
@@ -79,6 +80,7 @@ auth.onAuthStateChanged(user => {
         document.getElementById("logoutBtn").style.display = "none";
         document.getElementById("loginBtn").style.display = "block";
         document.getElementById("registerBtn").style.display = "block";
+        document.getElementById("listaEstribillosBtn").style.display = "none";
     }
 });
 
@@ -335,3 +337,38 @@ editEstribilloForm.addEventListener("submit", (e) => {
             alert("Error al buscar el estribillo.");
         });
 });
+
+//Funcion para mostrar la lista de estribillos ordenados por número en <div id="listaEstribillos"></div>
+function showEstribillos() {
+    const estribillosDiv = document.getElementById("listaEstribillos");
+
+    // Limpiar el div de resultados
+    estribillosDiv.innerHTML = "Cargando...";
+
+    // Obtener los estribillos ordenados por número
+    db.collection("estribillos")
+        .orderBy("numero")
+        .get()
+        .then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                estribillosDiv.innerHTML = "No hay estribillos.";
+                return;
+            }
+
+            // Mostrar los estribillos en el div
+            estribillosDiv.innerHTML = "";
+            querySnapshot.forEach((doc) => {
+                const estribillo = doc.data();
+                estribillosDiv.innerHTML += `
+                    <li>${estribillo.numero} - ${estribillo.titulo}</li> 
+                `;
+            });
+        })
+        .catch((error) => {
+            console.error("Error al buscar los estribillos: ", error);
+            estribillosDiv.innerHTML = "Error al buscar los estribillos.";
+        });
+}
+
+// Mostrar la lista de estribillos al cargar la página
+showEstribillos();
